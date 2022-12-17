@@ -1,0 +1,32 @@
+安装目录  C:\Program Files\MySQL\MySQL Server 5.6\bin
+登录        mysql -uroot -p123456 -h127.0.0.1
+               mysql -uroot -p123456 -hlocalhost -P3306
+乱码问题：
+显示        show variables like '%char%'；
+               
+修改        set character_set_database=gbk;
+C:\ProgramData\MySQL\MySQL Server 5.6\my.ini
+创建数据库          create database bookmanage default charset gbk；
+                           create database if not exists bookmanage default charset gbk;
+查看所有数据库   show databases；
+修改                    alter database bookmanage default charset utf8;
+删除                    drop database bookmanage;
+                           drop database if exists bookmanage;
+帮助   \h
+设置数据库编码  set names gbk;
+使用数据库         ues xscj;
+显示表格            show table;
+显示表格结构     describe xs;或者desc xs;
+显示表格内容     select * from xs；
+导入语句            source D:/桌面/MYSQL/code/xscj.sql
+注释                   --（加空格）或者 /*  */
+
+py联系数据库
+import numpy as np
+import pandas as pd
+from sqlalchemy import create_engine
+import pymysql
+engine=create_engine("mysql+pymysql://root:123456@localhost:3306/xscj")
+data=pd.read_sql("select * from xs",con=engine)
+data1=pd.read_sql("select 成绩 from xs_kc where 课程号='101'",con=engine)
+data1.describe()

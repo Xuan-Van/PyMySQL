@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <title> 留言板 </title>
+        <meta charset="utf-8">
+        <style type="text/css">
+            .split{
+                height:100%;width:50%;position:fixed;z-index:1;
+                top:0;overflow-x:hidden;padding-top:20px;
+            }
+            .left{left:15px;}
+            .right{right:15px;}
+        </style>
+    </head>
+    <div id="left" class="split left">
+        <form action="index.html" method="post">
+            <label> 请留言 </label><br>
+            <textarea name="msg" placeholder="留言" cols="40" rows="25"></textarea><br>
+            <input type="submit" value="提交留言">
+        </form>
+    </div>
+    <div id="right" class="split right">
+        {%if contents %}
+            {%for content in contents%}
+                <br>发表内容:{{content['content']}}
+                <br>发表时间:{{content['time']}}
+                <br>---------------------------------
+            {%endfor%}
+        {%else%}
+            <font color="red">没有留言!</font>
+        {%endif%}
+    </div>
+</html>
